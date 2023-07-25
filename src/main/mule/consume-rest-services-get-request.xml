@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6b34a01b-b90d-45c1-9248-f58721905f80" basePath="consume-rest-services" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="consume-rest-services-flow" doc:id="fef43eb2-697b-4568-bad5-4a2b899f2408" >
+		<http:listener doc:name="Listener" doc:id="98c78c44-c5a2-48d2-a6e2-572ab81df8ae" config-ref="HTTP_Listener_config" path="get-request"/>
+		<logger level="INFO" doc:name="Start Logger" doc:id="61f3028b-66cd-4519-ab01-29d4b4f8acd9" message="Started get request flow"/>
+		<http:request method="GET" doc:name="Request Json Place Holder" doc:id="54344822-ebd0-41b5-adce-0113a797e776" url="https://jsonplaceholder.typicode.com/users"/>
+		<logger level="INFO" doc:name="Logger" doc:id="db76a84d-b7a1-4efe-8325-6aede6cdfe9e" message="#[payload]"/>
+	</flow>
+</mule>

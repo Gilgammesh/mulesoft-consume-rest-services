@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="consume-rest-services-post-request-flow" doc:id="16c40ffd-7141-40c6-8824-d8f49de8246e" >
+		<http:listener doc:name="Listener" doc:id="1859160b-7710-41da-81b8-6037d88a2eaa" config-ref="HTTP_Listener_config" path="post-request"/>
+		<logger level="INFO" doc:name="Start Logger" doc:id="dd84c792-93ff-461f-b1b0-4b0241ab6dce" message="Started post request flow"/>
+		<http:request method="POST" doc:name="Request" doc:id="d4a77fc7-0856-4e4f-a421-c099aaab2ad7" url="https://jsonplaceholder.typicode.com/posts"/>
+		<logger level="INFO" doc:name="End Logger" doc:id="0a0eccac-ab7c-4b61-832d-f213d0fba149" message="#[payload]"/>
+	</flow>
+</mule>
